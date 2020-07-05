@@ -10,10 +10,8 @@ const noteReducer = (state = [], action) => {
         ...noteToFind,
         important: !noteToFind.important,
       };
-
       return state.map((note) => (note.id !== id ? note : changedNote));
   }
-
   return state;
 };
 
