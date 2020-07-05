@@ -5,7 +5,6 @@ const noteReducer = (state = [], action) => {
     case 'TOGGLE_IMPORTANCE':
       const id = action.data.id;
       const noteToFind = state.find((note) => note.id === id);
-
       const changedNote = {
         ...noteToFind,
         important: !noteToFind.important,
