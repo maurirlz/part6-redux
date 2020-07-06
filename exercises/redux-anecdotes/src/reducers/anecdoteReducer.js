@@ -24,6 +24,26 @@ export const asObjectWithoutId = (anecdote) => {
   };
 };
 
+export const createAnecdote = (content) => {
+  return {
+    type: "NEW_ANECDOTE",
+    data: {
+      content,
+      id: getId(),
+      votes: 0,
+    },
+  };
+};
+
+export const voteAnecdote = (id) => {
+  return {
+    type: "VOTEUP",
+    data: {
+      id,
+    },
+  };
+};
+
 const initialState = anecdotesAtStart.map(asObject);
 
 const reducer = (state = initialState, action) => {
