@@ -28,7 +28,7 @@ describe("Anecdotes reducer", () => {
     ).toEqual(initialStateWithoutId);
   });
 
-  test("Vote count is incremented with proper action.", () => {
+  test(" Should increment vote count if a vote action is dispatched ", () => {
     const initialAnecdote = initialState[0];
     const action = {
       type: "VOTEUP",
@@ -44,5 +44,24 @@ describe("Anecdotes reducer", () => {
       ...initialAnecdote,
       votes: 1,
     });
+  });
+
+  test(" Should create a new anecdote with content submitted to it. ", () => {
+    const action = {
+      type: "NEW_ANECDOTE",
+      data: {
+        content: "New anecdote through testing.",
+      },
+    };
+
+    deepFreeze(initialState);
+    const newState = anecdoteReducer(initialState, action);
+
+    expect(newState).toHaveLength(initialState.length + 1);
+
+    const newAnecdoteInState = newState.find(
+      (anecdote) => anecdote.content === action.data.content
+    );
+    expect(newAnecdoteInState).toBeDefined();
   });
 });
