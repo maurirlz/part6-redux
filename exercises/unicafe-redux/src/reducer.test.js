@@ -31,6 +31,7 @@ describe("unicafe reducer", () => {
       bad: 0,
     });
   });
+
   test("ok is incremented", () => {
     const action = {
       type: "OK",
@@ -46,6 +47,7 @@ describe("unicafe reducer", () => {
       ok: 1,
     });
   });
+
   test("bad is incremented", () => {
     const action = {
       type: "BAD",
@@ -61,6 +63,7 @@ describe("unicafe reducer", () => {
       bad: 1,
     });
   });
+
   test("if action is zero, counters are reset", () => {
     const modifiedState = {
       ...initialState,
