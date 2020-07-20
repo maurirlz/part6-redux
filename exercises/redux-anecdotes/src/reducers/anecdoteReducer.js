@@ -8,6 +8,8 @@ export const anecdotesAtStart = [
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
+// actions creators
+
 export const asObject = (anecdote) => {
   return {
     content: anecdote,
@@ -43,7 +45,11 @@ export const voteAnecdote = (id) => {
   };
 };
 
+// initial state
+
 const initialState = anecdotesAtStart.map(asObject);
+
+// reducer
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
