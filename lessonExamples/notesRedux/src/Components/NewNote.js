@@ -1,6 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { createNote } from "../Reducers/noteReducer";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { createNote } from '../reducers/noteReducer';
 
 const NewNote = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const NewNote = () => {
     event.preventDefault();
 
     const content = event.target.note.value;
-    event.target.note.value = "";
+    event.target.note.value = '';
 
     dispatch(createNote(content));
   };

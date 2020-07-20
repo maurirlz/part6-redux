@@ -1,12 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleImportanceOf } from "../Reducers/noteReducer";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleImportanceOf } from '../reducers/noteReducer';
 
 const Note = ({ note, handleClick }) => {
   return (
     <li onClick={handleClick}>
       {note.content}
-      <strong>{note.important ? "important " : ""}</strong>
+      <strong>{note.important ? ' important ' : ''}</strong>
     </li>
   );
 };
@@ -14,11 +14,11 @@ const Note = ({ note, handleClick }) => {
 const Notes = () => {
   const dispatch = useDispatch();
   const notes = useSelector(({ filter, notes }) => {
-    if (filter === "ALL") {
+    if (filter === 'ALL') {
       return notes;
     }
 
-    return filter === "IMPORTANT"
+    return filter === 'IMPORTANT'
       ? notes.filter((note) => note.important)
       : notes.filter((note) => !note.important);
   });

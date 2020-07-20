@@ -1,11 +1,11 @@
 const initialNotes = [
   {
-    content: "reducer defines how redux store works",
+    content: 'reducer defines how redux store works',
     important: true,
     id: 1,
   },
   {
-    content: "state of store can contain any data",
+    content: 'state of store can contain any data',
     important: false,
     id: 2,
   },
@@ -13,9 +13,9 @@ const initialNotes = [
 
 const noteReducer = (state = initialNotes, action) => {
   switch (action.type) {
-    case "NEW_NOTE":
+    case 'NEW_NOTE':
       return [...state, action.data];
-    case "TOGGLE_IMPORTANCE":
+    case 'TOGGLE_IMPORTANCE':
       const id = action.data.id;
       const noteToFind = state.find((note) => note.id === id);
       const changedNote = {
@@ -32,14 +32,14 @@ const generateId = () => Number((Math.random() * 100000).toFixed(0));
 
 export const toggleImportanceOf = (id) => {
   return {
-    type: "TOGGLE_IMPORTANCE",
+    type: 'TOGGLE_IMPORTANCE',
     data: { id },
   };
 };
 
 export const createNote = (content) => {
   return {
-    type: "NEW_NOTE",
+    type: 'NEW_NOTE',
     data: {
       content,
       important: false,
