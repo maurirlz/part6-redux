@@ -1,18 +1,18 @@
-import deepFreeze from "deep-freeze";
-import anecdoteReducer from "./anecdoteReducer";
+import deepFreeze from 'deep-freeze';
+import anecdoteReducer from './anecdoteReducer';
 import {
   asObject,
   asObjectWithoutId,
   anecdotesAtStart,
-} from "./anecdoteReducer";
+} from './anecdoteReducer';
 
-describe("Anecdotes reducer", () => {
+describe('Anecdotes reducer', () => {
   const initialStateWithoutId = anecdotesAtStart.map(asObjectWithoutId);
   const initialState = anecdotesAtStart.map(asObject);
 
-  test("should return initial state if called with undefined state", () => {
+  test('should return initial state if called with undefined state', () => {
     const action = {
-      type: "NOTHING",
+      type: 'NOTHING',
     };
 
     deepFreeze(initialStateWithoutId);
@@ -24,14 +24,14 @@ describe("Anecdotes reducer", () => {
           content: anecdote.content,
           votes: anecdote.votes,
         };
-      })
+      }),
     ).toEqual(initialStateWithoutId);
   });
 
-  test(" Should increment vote count if a vote action is dispatched ", () => {
+  test(' Should increment vote count if a vote action is dispatched ', () => {
     const initialAnecdote = initialState[0];
     const action = {
-      type: "VOTEUP",
+      type: 'VOTEUP',
       data: {
         id: initialAnecdote.id,
       },
@@ -46,11 +46,11 @@ describe("Anecdotes reducer", () => {
     });
   });
 
-  test(" Should create a new anecdote with content submitted to it. ", () => {
+  test(' Should create a new anecdote with content submitted to it. ', () => {
     const action = {
-      type: "NEW_ANECDOTE",
+      type: 'NEW_ANECDOTE',
       data: {
-        content: "New anecdote through testing.",
+        content: 'New anecdote through testing.',
       },
     };
 
@@ -60,7 +60,7 @@ describe("Anecdotes reducer", () => {
     expect(newState).toHaveLength(initialState.length + 1);
 
     const newAnecdoteInState = newState.find(
-      (anecdote) => anecdote.content === action.data.content
+      (anecdote) => anecdote.content === action.data.content,
     );
     expect(newAnecdoteInState).toBeDefined();
   });
