@@ -28,12 +28,15 @@ export const createAnecdote = (content) => {
   };
 };
 
-export const voteAnecdote = (id) => {
-  return {
-    type: 'VOTEUP',
-    data: {
-      id,
-    },
+export const voteAnecdote = (anecdote) => {
+  return async (dispatch) => {
+    const updatedAnecdote = await anecdoteService.updateLikesOnAnecdote(
+      anecdote,
+    );
+    dispatch({
+      type: 'VOTEUP',
+      data: updatedAnecdote,
+    });
   };
 };
 

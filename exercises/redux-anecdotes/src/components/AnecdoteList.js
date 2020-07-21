@@ -29,10 +29,14 @@ const AnecdoteList = () => {
     return 0;
   });
 
-  const voteAndNotify = (id, title) => {
-    dispatch(voteAnecdote(id));
-    dispatch(votedAnecdoteNotification(title));
+  const voteAndNotify = async (anecdote) => {
+    const updatedAnecdote = {
+      ...anecdote,
+      votes: anecdote.votes + 1,
+    };
 
+    dispatch(voteAnecdote(updatedAnecdote));
+    dispatch(votedAnecdoteNotification(anecdote.content));
     setTimeout(() => dispatch(hideNotification()), 1900);
   };
 
@@ -43,7 +47,7 @@ const AnecdoteList = () => {
         <Anecdote
           anecdote={anecdote}
           key={anecdote.id}
-          handleClick={() => voteAndNotify(anecdote.id, anecdote.content)}
+          handleClick={() => voteAndNotify(anecdote)}
         />
       ))}
     </>

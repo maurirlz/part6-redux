@@ -19,4 +19,12 @@ const createNewAnecdote = async (content) => {
   return response.data;
 };
 
-export default { getAllAnecdotes, createNewAnecdote };
+const updateLikesOnAnecdote = async (anecdote) => {
+  const updatedUrl = `${baseUrl}/${anecdote.id}`;
+
+  const response = await axios.put(updatedUrl, anecdote);
+
+  return response.data;
+};
+
+export default { getAllAnecdotes, createNewAnecdote, updateLikesOnAnecdote };
