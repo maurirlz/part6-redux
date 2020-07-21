@@ -19,12 +19,12 @@ export const asObjectWithoutId = (anecdote) => {
 // action creators
 
 export const createAnecdote = (content) => {
-  return {
-    type: 'NEW_ANECDOTE',
-    data: {
-      content,
-      votes: 0,
-    },
+  return async (dispatch) => {
+    const returnedNote = await anecdoteService.createNewAnecdote(content);
+    dispatch({
+      type: 'NEW_ANECDOTE',
+      data: returnedNote,
+    });
   };
 };
 

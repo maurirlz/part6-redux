@@ -16,7 +16,6 @@ const AnecdoteForm = () => {
     const textContent = event.target.anecdote.value;
     event.target.anecdote.value = '';
 
-    await anecdoteService.createNewAnecdote(textContent);
     dispatch(createAnecdote(textContent));
     dispatch(newAnecdoteNotification(textContent));
 
