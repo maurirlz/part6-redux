@@ -11,8 +11,6 @@ const NewNote = () => {
 
     const content = event.target.note.value;
     event.target.note.value = '';
-
-    await noteService.createNewNote(content);
     dispatch(createNote(content));
   };
 

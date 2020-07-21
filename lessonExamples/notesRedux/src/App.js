@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import noteService from './services/notes';
 import Notes from './Components/Notes';
 import NewNote from './Components/NewNote';
 import VisibilityFilter from './VisibilityFIlter';
@@ -10,14 +9,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    noteService
-      .getAll()
-      .then((notes) => {
-        dispatch(initializeNotes(notes));
-      })
-      .catch(() => {
-        console.log('Error trying to retrieve notes from server.');
-      });
+    dispatch(initializeNotes());
   }, [dispatch]);
 
   return (
