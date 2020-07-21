@@ -11,7 +11,7 @@ const getAllAnecdotes = async () => {
 const createNewAnecdote = async (content) => {
   const anecdote = {
     content,
-    important: false,
+    votes: 0,
   };
 
   const response = await axios.post(baseUrl, anecdote);
