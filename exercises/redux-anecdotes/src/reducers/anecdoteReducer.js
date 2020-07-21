@@ -1,3 +1,5 @@
+import anecdoteService from '../services/anecdotes';
+
 // helpers
 
 export const asObject = (anecdote) => {
@@ -35,10 +37,13 @@ export const voteAnecdote = (id) => {
   };
 };
 
-export const initializeAnecdotes = (anecdotes) => {
-  return {
-    type: 'INITIALIZE_ANECDOTES',
-    data: anecdotes,
+export const initializeAnecdotes = () => {
+  return async (dispatch) => {
+    const anecdotes = await anecdoteService.getAllAnecdotes();
+    dispatch({
+      type: 'INITIALIZE_ANECDOTES',
+      data: anecdotes,
+    });
   };
 };
 

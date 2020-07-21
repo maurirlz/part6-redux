@@ -10,14 +10,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    anecdotesService
-      .getAllAnecdotes()
-      .then((anecdotes) => {
-        dispatch(initializeAnecdotes(anecdotes));
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    dispatch(initializeAnecdotes());
   }, [dispatch]);
 
   return (
