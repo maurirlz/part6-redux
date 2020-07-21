@@ -33,7 +33,7 @@ const AnecdoteList = () => {
     dispatch(voteAnecdote(id));
     dispatch(votedAnecdoteNotification(title));
 
-    setTimeout(() => dispatch(hideNotification), 5000);
+    setTimeout(() => dispatch(hideNotification()), 1900);
   };
 
   return (
