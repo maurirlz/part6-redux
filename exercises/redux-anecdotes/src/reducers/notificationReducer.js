@@ -1,38 +1,27 @@
-const initialState = null;
+const initialState = '';
 
 // action creators
 
-export const newAnecdoteNotification = (anecdoteTitle) => {
+export const showNotification = (message) => {
   return {
-    type: 'NEW ANECDOTE',
+    type: 'SHOW_NOTIFICATION',
     data: {
-      anecdoteTitle,
-    },
-  };
-};
-
-export const votedAnecdoteNotification = (anecdoteTitle) => {
-  return {
-    type: 'VOTED ANECDOTE',
-    data: {
-      anecdoteTitle,
+      message,
     },
   };
 };
 
 export const hideNotification = () => {
   return {
-    type: 'HIDE NOTIFICATION',
+    type: 'HIDE_NOTIFICATION',
   };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'NEW ANECDOTE':
-      return `You created a new Anecdote with the title: ${action.data.anecdoteTitle}`;
-    case 'VOTED ANECDOTE':
-      return `You voted up ${action.data.anecdoteTitle}`;
-    case 'HIDE NOTIFICATION':
+    case 'SHOW_NOTIFICATION':
+      return action.data.message;
+    case 'HIDE_NOTIFICATION':
       return null;
     default:
       return state;
