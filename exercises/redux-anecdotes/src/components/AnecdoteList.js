@@ -4,6 +4,7 @@ import { voteAnecdote } from '../reducers/anecdoteReducer';
 import {
   showNotification,
   hideNotification,
+  automaticNotification,
 } from '../reducers/notificationReducer';
 
 const Anecdote = ({ anecdote, handleClick }) => {
@@ -36,12 +37,15 @@ const AnecdoteList = () => {
     };
 
     dispatch(voteAnecdote(updatedAnecdote));
+    //  dispatch(
+    // showNotification(
+    // `You voted ${updatedAnecdote.content}, current votes: ${updatedAnecdote.votes} `,
+    // ),
+    // );
+    // setTimeout(() => dispatch(hideNotification()), 1900);
     dispatch(
-      showNotification(
-        `You voted ${updatedAnecdote.content}, current votes: ${updatedAnecdote.votes} `,
-      ),
+      automaticNotification(`you voted ${updatedAnecdote.content}`, 1900),
     );
-    setTimeout(() => dispatch(hideNotification()), 1900);
   };
 
   return (
