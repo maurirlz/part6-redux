@@ -27,7 +27,7 @@ export const automaticNotification = (notification, timeout) => {
         dispatch({
           type: 'HIDE_NOTIFICATION',
         });
-      }, timeout),
+      }, timeout * 1000),
     );
   };
 };
