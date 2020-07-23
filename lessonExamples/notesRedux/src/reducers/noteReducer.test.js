@@ -1,5 +1,5 @@
-import noteReducer from './noteReducer';
 import deepFreeze from 'deep-freeze';
+import noteReducer from './noteReducer';
 
 describe('noteReducer', () => {
   test('returns new state with action NEW_NOTE', () => {

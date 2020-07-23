@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import noteService from '../services/notes';
 
 const noteReducer = (state = [], action) => {
@@ -5,7 +6,7 @@ const noteReducer = (state = [], action) => {
     case 'NEW_NOTE':
       return [...state, action.data];
     case 'TOGGLE_IMPORTANCE':
-      const id = action.data.id;
+      const { id } = action.data;
       const noteToFind = state.find((note) => note.id === id);
       const changedNote = {
         ...noteToFind,
