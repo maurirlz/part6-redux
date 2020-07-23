@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 const initialState = '';
 
 // action creators
@@ -17,18 +18,22 @@ export const hideNotification = () => {
 
 export const automaticNotification = (notification, timeout) => {
   return async (dispatch) => {
-    dispatch({
-      type: 'SHOW_NOTIFICATION',
-      data: notification,
-    });
-
-    return await new Promise(() =>
+    return await new Promise(() => {
       setTimeout(() => {
-        dispatch({
-          type: 'HIDE_NOTIFICATION',
-        });
-      }, timeout * 1000),
-    );
+        dispatch(
+          {
+            type: 'SHOW_NOTIFICATION',
+            data: notification,
+          },
+          timeout * 1000,
+        );
+        setTimeout(() => {
+          dispatch({
+            type: 'HIDE_NOTIFICATION',
+          });
+        }, timeout * 1000);
+      });
+    });
   };
 };
 

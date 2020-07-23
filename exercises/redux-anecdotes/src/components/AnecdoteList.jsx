@@ -36,7 +36,7 @@ const AnecdoteList = ({ anecdotes, voteAnecdote, automaticNotification }) => {
     };
 
     voteAnecdote(updatedAnecdote);
-    automaticNotification(`you voted ${updatedAnecdote.content}`, 2);
+    automaticNotification(`you voted ${updatedAnecdote.content}`, 5);
   };
 
   return (
