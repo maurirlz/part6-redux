@@ -17,7 +17,7 @@ const Anecdote = ({ anecdote, handleClick }) => {
 };
 
 // eslint-disable-next-line no-shadow
-const AnecdoteList = ({ anecdotes, voteAnecdote }) => {
+const AnecdoteList = ({ anecdotes, voteAnecdote, automaticNotification }) => {
   anecdotes.sort((a1, a2) => {
     if (a1.votes < a2.votes) {
       return 1;
