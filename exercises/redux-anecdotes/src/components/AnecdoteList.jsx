@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { voteAnecdote } from '../reducers/anecdoteReducer';
 import { automaticNotification } from '../reducers/notificationReducer';
 
@@ -8,18 +9,20 @@ const Anecdote = ({ anecdote, handleClick }) => {
     <div>
       <div>{anecdote.content}</div>
       <div>has {anecdote.votes}</div>
-      <button onClick={handleClick}>vote</button>
+      <button onClick={handleClick} type="submit">
+        vote
+      </button>
     </div>
   );
 };
 
-const AnecdoteList = () => {
-  const dispatch = useDispatch();
-  const anecdotes = useSelector((state) => state.anecdotes);
+// eslint-disable-next-line no-shadow
+const AnecdoteList = ({ anecdotes, voteAnecdote }) => {
   anecdotes.sort((a1, a2) => {
     if (a1.votes < a2.votes) {
       return 1;
-    } else if (a1.votes > a2.votes) {
+    }
+    if (a1.votes > a2.votes) {
       return -1;
     }
 
@@ -32,8 +35,8 @@ const AnecdoteList = () => {
       votes: anecdote.votes + 1,
     };
 
-    dispatch(voteAnecdote(updatedAnecdote));
-    dispatch(automaticNotification(`you voted ${updatedAnecdote.content}`, 2));
+    voteAnecdote(updatedAnecdote);
+    automaticNotification(`you voted ${updatedAnecdote.content}`, 2);
   };
 
   return (
@@ -50,4 +53,13 @@ const AnecdoteList = () => {
   );
 };
 
-export default AnecdoteList;
+const mapStateToProps = (state) => {
+  return {
+    anecdotes: state.anecdotes,
+  };
+};
+
+export default connect(mapStateToProps, {
+  voteAnecdote,
+  automaticNotification,
+})(AnecdoteList);
